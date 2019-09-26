@@ -49,13 +49,16 @@ public class DroolsDelegate implements JavaDelegate {
        
 	   
 	    if (facts != null) {
-	      System.out.println( "facts != null: " + facts )	;
+	      //Verifying that facts are not null
+	      System.out.println( "facts != null: " + (String) facts.getValue(execution))	;
 	      // Very easy implementation to fetch the parameters :-) Must be improved
 	      // for real live
 	      StringTokenizer st = new StringTokenizer((String) facts.getValue(execution), ",");
 	      
 	      System.out.println( "facts: " + (String) facts.getValue(execution));
 	      System.out.println( "drlFile: " + (String) drlFile.getValue(execution));
+	      System.out.println( "Token Count: " + st.countTokens());
+	      System.out.println( "Token String: " + st.toString());
 	      
 	      while (st.hasMoreTokens()) {
 	        String variableName = st.nextToken().trim();
