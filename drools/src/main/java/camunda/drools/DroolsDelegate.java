@@ -53,12 +53,20 @@ public class DroolsDelegate implements JavaDelegate {
 	      // Very easy implementation to fetch the parameters :-) Must be improved
 	      // for real live
 	      StringTokenizer st = new StringTokenizer((String) facts.getValue(execution), ",");
+	      
+	      System.out.println( "facts: " + (String) facts.getValue(execution));
+	      System.out.println( "drlFile: " + (String) drlFile.getValue(execution));
+	      
 	      while (st.hasMoreTokens()) {
 	        String variableName = st.nextToken().trim();
 
 	        // TODO: Add retrieval of variable and insert it into the working memory
 	        Object variable = execution.getVariable(variableName);
+	        System.out.println( "variableName: " + variableName);
+	        
 	        workingMemory.insert(variable);
+	        
+	       System.out.println( "workingMemory.getFactCount(): " + workingMemory.getFactCount());
 
 	        // remember the variable to update it later in the process context
 	        factMap.put(variableName, variable);
@@ -68,6 +76,7 @@ public class DroolsDelegate implements JavaDelegate {
 	  
 	    workingMemory.fireAllRules();
 	    System.out.println( "workingMemory.fireAllRules()..." );
+	   
 	    
 	    // update variables
 	    for (Entry<String, Object> factEntry : factMap.entrySet()) {

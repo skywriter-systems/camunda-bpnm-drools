@@ -9,7 +9,7 @@ public class ProcessVariablesDelegate implements JavaDelegate {
 		System.out.println("Process Variable ...");
 		execution.setVariable("author","echasin");
 		execution.setVariable("email","echasin@innvosolutions.com");
-		execution.setVariable("content","This is demo tweet-John Doe");
+		execution.setVariable("content","This is a demo tweet - John Doe");
 		
 		String author = (String) execution.getVariable("author");
 		String email = (String) execution.getVariable("email");

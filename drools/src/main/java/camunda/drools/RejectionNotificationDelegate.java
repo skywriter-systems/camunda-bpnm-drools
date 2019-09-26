@@ -14,6 +14,7 @@ public class RejectionNotificationDelegate implements JavaDelegate {
   public void execute(DelegateExecution execution) throws Exception {
     Tweet tweet = (Tweet) execution.getVariable("tweet");
     
+    //System.out.println("tweet: " + tweet.isApproved());
     System.out.println("Hi!\n\n"
            + "Unfortunately your tweet has been rejected.\n\n"
            //+ "Original content: " + tweet.getContent() + "\n\n"

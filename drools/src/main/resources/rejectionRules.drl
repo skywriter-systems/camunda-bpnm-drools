@@ -7,5 +7,5 @@ rule "John Doe must not be named in Twitter"
 when
 	t : Tweet( content matches '.*(John Doe).*' )
 then
-	t.reject("Please don't twitter about Jon Doe, he complained about that");
+	t.reject("Please don't twitter about John Doe, he complained about that");
 end

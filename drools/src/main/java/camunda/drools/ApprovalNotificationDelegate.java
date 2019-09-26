@@ -16,7 +16,7 @@ public class ApprovalNotificationDelegate implements JavaDelegate {
     
     System.out.println("Hi!\n\n"
            + "Your Tweet has been approved.\n\n"
-           + "Original content: " + tweet.getContent() + "\n\n"
+           //+ "Original content: " + tweet.getContent() + "\n\n"
            );
   }
   
