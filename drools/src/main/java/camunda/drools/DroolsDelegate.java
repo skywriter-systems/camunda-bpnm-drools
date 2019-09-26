@@ -25,24 +25,31 @@ public class DroolsDelegate implements JavaDelegate {
 	private HashMap<String, Object> factMap = new HashMap<String, Object>();
 
 	public void execute(DelegateExecution execution) throws Exception {
+		System.out.println( "Bootstrapping the Rule Engine ..." );	
+		
+		//Get process variables from Camunda bpnm
+		String author = (String) execution.getVariable("author");
+		String email = (String) execution.getVariable("email");
+		String content = (String) execution.getVariable("content");
+		System.out.println( "Process variables: " + author + " - " + email + " - " +content );	
+		
+		
 		String drlFileName = (String) drlFile.getValue(execution);
+			
 		
-		System.out.println( "Bootstrapping the Rule Engine ..." );
-		  
 		KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-		
-	    kbuilder.add(ResourceFactory.newClassPathResource(drlFileName, getClass()), ResourceType.DRL);
-	    /*
+	    kbuilder.add(ResourceFactory.newClassPathResource(drlFileName, getClass()), ResourceType.DRL);  
 	    if (kbuilder.hasErrors()) {
 	     throw new RuntimeException("Error in drools: " + kbuilder.getErrors().toString());
 	    }
-	    */
+	    
 		
-	    //KnowledgeBase knowledgeBase = kbuilder.newKnowledgeBase();
-	    //StatefulKnowledgeSession workingMemory = knowledgeBase.newStatefulKnowledgeSession();
+	    KnowledgeBase knowledgeBase = kbuilder.newKnowledgeBase();
+	    StatefulKnowledgeSession workingMemory = knowledgeBase.newStatefulKnowledgeSession();
        
-	    /*
+	   
 	    if (facts != null) {
+	      System.out.println( "facts != null: " + facts )	;
 	      // Very easy implementation to fetch the parameters :-) Must be improved
 	      // for real live
 	      StringTokenizer st = new StringTokenizer((String) facts.getValue(execution), ",");
@@ -57,15 +64,16 @@ public class DroolsDelegate implements JavaDelegate {
 	        factMap.put(variableName, variable);
 	      }
 	    }
-		*/
-	    /*
-	    workingMemory.fireAllRules();
 
+	  
+	    workingMemory.fireAllRules();
+	    System.out.println( "workingMemory.fireAllRules()..." );
+	    
 	    // update variables
 	    for (Entry<String, Object> factEntry : factMap.entrySet()) {
 	      // update variable in the process variables
 	      execution.setVariable(factEntry.getKey(), factEntry.getValue());
 	    }
-	    */
+	  
 	  }
 }

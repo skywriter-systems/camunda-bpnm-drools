@@ -1,6 +1,7 @@
-package org.camunda.bpm.examples.twitter
+package camunda.drools;
 
-import org.camunda.bpm.example.twitter.Tweet;
+import camunda.drools.Tweet;
+
 
 rule "John Doe must not be named in Twitter"
 when
